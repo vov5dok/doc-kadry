@@ -23,7 +23,7 @@
                                     <td>{{ $file->name }}</td>
                                     <td>
                                         <span class="mx-3"><i id="icon-to-read-file-{{ $file->id }}" class="bi bi-x-lg text-danger"></i></span>
-                                        <a href="{{ asset($file->path) }}" class="btn btn-primary" target="_blank" onclick="click_read_file({{ $file->id }});">Посмотреть</a>
+                                        <a href="{{ asset('storage/' . $file->path) }}" class="btn btn-primary" target="_blank" onclick="click_read_file({{ $file->id }});">Посмотреть</a>
                                     </td>
                                 </tr>
                             @endforeach
