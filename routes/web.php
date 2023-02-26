@@ -18,4 +18,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::patch('/{document}', [App\Http\Controllers\Admin\DocumentsController::class, 'update'])->name('admin.documents.update');
         Route::delete('/{document}', [App\Http\Controllers\Admin\DocumentsController::class, 'delete'])->name('admin.documents.delete');
     });
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.home');
+        Route::delete('/{user}', [App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin.users.delete');
+    });
 });

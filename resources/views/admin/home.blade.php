@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('admin.documents.home') }}" class="btn btn-primary mx-2">Посмотреть все</a>
-                    <a href="#" class="btn btn-success mx-2">Новый документ</a>
+                    <a href="{{ route('admin.documents.create') }}" class="btn btn-success mx-2">Новый документ</a>
                 </div>
             </div>
         </div>
@@ -37,8 +37,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary mx-2">Посмотреть все</a>
-                    <a href="#" class="btn btn-success mx-2">Новый пользователь</a>
+                    <a href="{{ route('admin.users.home') }}" class="btn btn-primary mx-2">Посмотреть все</a>
                 </div>
             </div>
         </div>
