@@ -22,8 +22,14 @@
                                     <td>{{ $file->id }}</td>
                                     <td>{{ $file->name }}</td>
                                     <td>
-                                        <span class="mx-3"><i id="icon-to-read-file-{{ $file->id }}" class="bi bi-x-lg text-danger"></i></span>
-                                        <a href="{{ asset('storage/' . $file->path) }}" class="btn btn-primary" target="_blank" onclick="click_read_file({{ $file->id }});">Посмотреть</a>
+                                        <span class="mx-3">
+                                            @if (isset($documentActivate[$file->id]))
+                                                <i class="bi bi-check2-square text-success"></i>
+                                            @else
+                                                <i id="icon-to-read-file-{{ $file->id }}" class="bi bi-x-lg text-danger"></i>
+                                            @endif
+                                        </span>
+                                        <a href="{{ route('document.show', $file->id) }}" class="btn btn-primary" target="_blank" onclick="click_read_file({{ $file->id }});">Посмотреть</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -40,9 +46,15 @@
                 <div class="card-body">
                     <div class="btn">
                         <form >
-                            <button id="get-report" type="submit" class="btn btn-success" disabled>
-                                Сформировать лист
-                            </button>
+                            @if($user->read_all_docs == 0)
+                                <button id="get-report" type="submit" class="btn btn-success" disabled>
+                                    Сформировать лист
+                                </button>
+                            @else
+                                <button id="get-report" type="submit" class="btn btn-success">
+                                    Сформировать лист
+                                </button>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -78,6 +90,28 @@
         function activateBtnGetReport() {
             if (documents.length === 0) {
                 $('#get-report').prop('disabled', false);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: '{{ route('document.set.all') }}',
+                    method: 'post',
+                    // dataType: 'JSON',
+                    data: {"user_id": "1", "all_docs": "1"},
+                    success:function(response)
+                    {
+                        console.log('success');
+                        console.log(response);
+                    },
+                    error: function(response) {
+                        console.log('error');
+                        console.log(response);
+                    }
+                });
             }
         }
     </script>

@@ -8,6 +8,11 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => 'doc', 'middleware' => ['auth']], function () {
+    Route::get('/{document}', [App\Http\Controllers\DocumentController::class, 'show'])->name('document.show');
+    Route::post('/set/all', [App\Http\Controllers\DocumentController::class, 'edit'])->name('document.set.all');
+});
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'document'], function () {

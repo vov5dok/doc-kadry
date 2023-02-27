@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\User;
+use App\Models\UserDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $documentActivate = [];
         $files = Document::all();
-        return view('home', compact(['files']));
+        $user = User::where('id', auth()->id())->first();
+        $userDocuments = UserDocument::all()->where('user_id', auth()->id())->all();
+        foreach ($userDocuments as $doc) {
+            $documentActivate[$doc->document_id] = $doc->document_id;
+        }
+        return view('home', compact(['files', 'user', 'documentActivate']));
     }
 }
