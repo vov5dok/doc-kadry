@@ -101,7 +101,7 @@
                     url: '{{ route('document.set.all') }}',
                     method: 'post',
                     // dataType: 'JSON',
-                    data: {"user_id": "1", "all_docs": "1"},
+                    data: {"user_id": "{{ auth()->id() }}", "all_docs": "1"},
                     success:function(response)
                     {
                         console.log('success');
