@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\User;
 use App\Models\UserDocument;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -32,5 +33,15 @@ class DocumentController extends Controller
         $user->save();
 
         return true;
+    }
+
+    public function createFinish()
+    {
+        $docs = auth()->user()->documents;
+        $user = auth()->user();
+        $pdf = PDF::loadView('list-finish', compact(['docs', 'user']));
+        return $pdf->download('result.pdf');
+
+//        return view('list-finish', compact(['docs', 'user']));
     }
 }

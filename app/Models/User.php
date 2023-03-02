@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return auth()->user()->is_admin == 1;
     }
+
+    public function documents()
+    {
+        return $this->belongsToMany(Document::class, 'user_documents', 'user_id', 'document_id');
+    }
 }

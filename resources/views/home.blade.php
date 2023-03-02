@@ -45,7 +45,8 @@
 
                 <div class="card-body">
                     <div class="btn">
-                        <form >
+                        <form action="{{ route('document.create.finish') }}" method="GET">
+                            @csrf
                             @if($user->read_all_docs == 0)
                                 <button id="get-report" type="submit" class="btn btn-success" disabled>
                                     Сформировать лист

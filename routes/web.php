@@ -11,6 +11,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'doc', 'middleware' => ['auth']], function () {
     Route::get('/{document}', [App\Http\Controllers\DocumentController::class, 'show'])->name('document.show');
     Route::post('/set/all', [App\Http\Controllers\DocumentController::class, 'edit'])->name('document.set.all');
+    Route::get('/create/finish', [App\Http\Controllers\DocumentController::class, 'createFinish'])->name('document.create.finish');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
