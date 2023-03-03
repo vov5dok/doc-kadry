@@ -19,14 +19,19 @@
                         <tbody>
                             @foreach($files as $file)
                                 <tr>
-                                    <td>{{ $file->id }}</td>
-                                    <td>{{ $file->name }}</td>
+                                    <td class="align-middle">{{ $file->id }}</td>
+                                    <td class="align-middle">{{ $file->name }}</td>
                                     <td>
                                         <span class="mx-3">
                                             @if (isset($documentActivate[$file->id]))
-                                                <i class="bi bi-check2-square text-success"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+                                                    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+                                                    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+                                                </svg>
                                             @else
-                                                <i id="icon-to-read-file-{{ $file->id }}" class="bi bi-x-lg text-danger"></i>
+                                                <svg id="icon-to-read-file-{{ $file->id }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg text-danger" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
                                             @endif
                                         </span>
                                         <a href="{{ route('document.show', $file->id) }}" class="btn btn-primary" target="_blank" onclick="click_read_file({{ $file->id }});">Посмотреть</a>
