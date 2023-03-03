@@ -1,0 +1,31 @@
+.header-line {
+    background-color: #f34646;
+    box-shadow: 0px 2px 13px #a36363;
+}
+
+.navbar-brand img {
+    width: 50%;
+}
+
+.auth-line-header a {
+    font-size: 20px;
+    margin-right: 35px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.auth-line-header a:hover {
+    color: #c4c4c4;
+    transition: 0.4s;
+}
+
+.header-name-user {
+    color: #fff;
+    font-size: 22px;
+}
+
+.header-btn-logout {
+    font-size: 20px;
+    margin-left: 30px;
+}
